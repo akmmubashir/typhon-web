@@ -9,7 +9,7 @@ export const Heading = ({
 }) => {
   return (
     <h2
-      className={`text-[28px] max-2xl:text-[24px] max-lg:text-[20px] uppercase font-semibold mb-2 ${
+      className={`text-[28px] max-2xl:text-[24px] max-lg:text-[20px] font-semibold mb-2 ${
         className ? className : "text-black"
       }`}
     >
