@@ -156,17 +156,17 @@ const HomeServiceSlider = ({
                 <div className="flex gap-2.5">
                     <button
                         onClick={prev}
-                        className=" bg-[#2563eb] hover:bg-[#1e40af] cursor-pointer text-white px-3 py-2 rounded-full text-sm"
+                        className="aspect-square bg-[#2563eb] hover:bg-[#1e40af] cursor-pointer text-white px-3 py-2 rounded-full text-sm"
                         aria-label="Previous"
                     >
-                        ◀
+                        {"<"}
                     </button>
                     <button
                         onClick={next}
-                        className=" bg-[#2563eb] hover:bg-[#1e40af] cursor-pointer text-white px-3 py-2 rounded-full text-sm"
+                        className="aspect-square bg-[#2563eb] hover:bg-[#1e40af] cursor-pointer text-white px-3 py-2 rounded-full text-sm"
                         aria-label="Next"
                     >
-                        ▶
+                        {">"}
                     </button>
                 </div>
             </div>
