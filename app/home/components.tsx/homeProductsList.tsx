@@ -32,7 +32,7 @@ const HomeProductsList = ({
   };
 
   return (
-    <div className="col-span-full mt-10 max-lg:order-3">
+    <div className="col-span-full lg:mt-10 max-lg:order-3">
       <div className="grid grid-cols-12 gap-[30px]">
         {visible.map((product) => (
           <Link
