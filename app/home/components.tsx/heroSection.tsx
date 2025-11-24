@@ -1,6 +1,6 @@
+import React from "react";
 import { CommonButton } from "@/app/components/common";
 import Link from "next/link";
-import React from "react";
 
 const HeroSection = () => {
   return (
