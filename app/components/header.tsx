@@ -49,8 +49,8 @@ const Header = () => {
             href={link.url}
             className={`uppercase font-medium text-[16px] ${
               !scrolled
-                ? "text-white hover:text-[#2563eb]"
-                : "text-black hover:text-[#2563eb]"
+                ? "text-white hover:text-[#fa4729]"
+                : "text-black hover:text-[#fa4729]"
             }`}
           >
             {link.title}
@@ -58,7 +58,7 @@ const Header = () => {
         ))}
       </div>
       <div>
-        <button className="cursor-pointer bg-[#2563eb] hover:bg-[#1e40af] text-white text-[16px] max-lg:text-[14px] p-[10px_20px] max-lg:p-[6px_14px] rounded">
+        <button className="cursor-pointer bg-[#fa4729] hover:bg-[#db2b0e] text-white text-[16px] max-lg:text-[14px] p-[10px_20px] max-lg:p-[6px_14px] rounded">
           Let&apos;s Talk
         </button>
       </div>

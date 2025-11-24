@@ -31,7 +31,7 @@ const HeroSection = () => {
           craftsmanship with unmatched precision.
         </p>
         <div className="flex gap-4 max-lg:gap-2.5">
-          <button className="cursor-pointer bg-[#2563eb] hover:bg-[#1e40af] text-white text-[16px] max-lg:text-[14px] p-[10px_20px] rounded-md mt-4 inline-block">
+          <button className="cursor-pointer bg-[#fa4729] hover:bg-[#db2b0e] text-white text-[16px] max-lg:text-[14px] p-[10px_20px] rounded-md mt-4 inline-block">
             Get a Free Quote
           </button>
           <Link

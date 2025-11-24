@@ -6,7 +6,7 @@ import { Paragraph } from "./common";
 const Footer = () => {
   return (
     <React.Fragment>
-      <div className="bg-[#2563eb]/10 grid grid-cols-12 p-[80px_120px] max-2xl:p-[60px_100px] max-lg:p-[60px_80px] max-md:p-[50px_20px]">
+      <div className="bg-black/10 grid grid-cols-12 p-[80px_120px] max-2xl:p-[60px_100px] max-lg:p-[60px_80px] max-md:p-[50px_20px]">
         <div className="col-span-3 max-md:col-span-full flex flex-col justify-start gap-2.5">
           <Link href="/" className="w-fit">
             <Image

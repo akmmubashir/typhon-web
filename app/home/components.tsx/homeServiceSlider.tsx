@@ -74,7 +74,7 @@ const HomeServiceSlider = ({
           display: none;
         }
         .slick-slider-wrapper .slick-dots li.slick-active .slick-dot-btn {
-          background-color: #2563eb;
+          background-color: #fa4729;
         }
         .slick-slider-wrapper .slick-slide > div {
           padding: 0 10px;
@@ -108,14 +108,14 @@ const HomeServiceSlider = ({
         <div className="flex gap-2.5">
           <button
             onClick={handlePrev}
-            className="aspect-square bg-[#2563eb] hover:bg-[#1e40af] cursor-pointer text-white px-3 py-2 rounded-full text-sm"
+            className="aspect-square bg-[#fa4729] hover:bg-[#db2b0e] cursor-pointer text-white px-3 py-2 rounded-full text-sm"
             aria-label="Previous"
           >
             <ArrowLeft size="w-6 h-6" color="stroke-white" stroke="1.5" />
           </button>
           <button
             onClick={handleNext}
-            className="aspect-square bg-[#2563eb] hover:bg-[#1e40af] cursor-pointer text-white px-3 py-2 rounded-full text-sm"
+            className="aspect-square bg-[#fa4729] hover:bg-[#db2b0e] cursor-pointer text-white px-3 py-2 rounded-full text-sm"
             aria-label="Next"
           >
             <ArrowRight size="w-6 h-6" color="stroke-white" stroke="1.5" />

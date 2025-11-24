@@ -27,7 +27,7 @@ export const SubHeading = ({
   return (
     <h6
       className={`${
-        className ? className : "text-[#2563eb]"
+        className ? className : "text-[#fa4729]"
       } uppercase text-[18px] max-lg:text-[16px] font-semibold mb-2 max-lg:mb-1`}
     >
       {title}
