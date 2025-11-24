@@ -9,9 +9,9 @@ export const Heading = ({
 }) => {
   return (
     <h2
-      className={`text-[28px] max-2xl:text-[24px] max-lg:text-[20px] font-semibold mb-2 ${
+      className={`${
         className ? className : "text-black"
-      }`}
+      } text-[28px] max-2xl:text-[24px] max-lg:text-[20px] font-semibold mb-2`}
     >
       {title}
     </h2>
@@ -26,9 +26,9 @@ export const SubHeading = ({
 }) => {
   return (
     <h6
-      className={`uppercase text-[18px] max-lg:text-[16px] font-semibold mb-2 max-lg:mb-1 ${
+      className={`${
         className ? className : "text-[#2563eb]"
-      }`}
+      } uppercase text-[18px] max-lg:text-[16px] font-semibold mb-2 max-lg:mb-1`}
     >
       {title}
     </h6>
@@ -42,6 +42,6 @@ export const Paragraph = ({
   className?: string;
 }) => {
   return (
-    <p className={`text-[16px] max-lg:text-[14px] ${className}`}>{title}</p>
+    <p className={`${className} text-[16px] max-lg:text-[14px]`}>{title}</p>
   );
 };

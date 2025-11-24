@@ -1,7 +1,7 @@
-import { Heading, Paragraph, SubHeading } from "@/app/components/common";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { Heading, Paragraph, SubHeading } from "@/app/components/common";
 
 const OurProducts = () => {
   //   const productsData = [
