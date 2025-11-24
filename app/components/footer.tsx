@@ -42,7 +42,7 @@ const Footer = () => {
               <Link
                 key={link.title}
                 href={link.url}
-                className="text-white block mb-2"
+                className="text-white text-[16px] max-lg:text-[14px] block mb-2"
               >
                 {link.title}
               </Link>
@@ -54,7 +54,7 @@ const Footer = () => {
               <Link
                 key={link.title}
                 href={link.url}
-                className="text-white block mb-2"
+                className="text-white text-[16px] max-lg:text-[14px] block mb-2"
               >
                 {link.title}
               </Link>
@@ -66,7 +66,7 @@ const Footer = () => {
               <Link
                 key={link.title}
                 href={link.url}
-                className="text-white block mb-2"
+                className="text-white text-[16px] max-lg:text-[14px] block mb-2"
               >
                 {link.title}
               </Link>
