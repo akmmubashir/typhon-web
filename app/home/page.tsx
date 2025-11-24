@@ -3,6 +3,8 @@ import Header from "../components/header";
 import HeroSection from "./components.tsx/heroSection";
 import AboutSection from "./components.tsx/aboutSection";
 import OurServices from "./components.tsx/ourServices";
+import OurProducts from "./components.tsx/ourProducts";
+import Footer from "../components/footer";
 
 const HomePage = () => {
   return (
@@ -11,6 +13,8 @@ const HomePage = () => {
       <HeroSection />
       <AboutSection />
       <OurServices />
+      <OurProducts />
+      <Footer />
     </div>
   );
 };

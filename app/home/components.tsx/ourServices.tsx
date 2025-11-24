@@ -15,37 +15,37 @@ const OurServices = () => {
       id: 2,
       title: "PEB (Pre-Engineered Buildings)",
       description: "Fast, efficient, and durable steel buildings",
-      img: "/assets/services/space-frame-structures.jpg",
+      img: "/assets/services/pre-engineered-buildings.jpg",
     },
     {
       id: 3,
       title: "Tensile Roofing Architecture",
       description: "Aesthetic, modern, and weather-resistant structures",
-      img: "/assets/services/space-frame-structures.jpg",
+      img: "/assets/services/tensile-roofing-architecture.jpg",
     },
     {
       id: 4,
       title: "Sandwich Panel Roofing",
       description: "Energy-efficient and insulated roofing systems",
-      img: "/assets/services/space-frame-structures.jpg",
+      img: "/assets/services/sandwich-panel-roofing.jpg",
     },
     {
       id: 5,
       title: "Steel Structural Fabrication",
       description:
         "Precision-built components manufactured to the highest standards",
-      img: "/assets/services/space-frame-structures.jpg",
+      img: "/assets/services/steel-structural-fabrication.jpg",
     },
     {
       id: 6,
       title: "Commercial & Industrial Roofing",
       description:
         "Long-lasting solutions for factories, malls, warehouses, and more",
-      img: "/assets/services/space-frame-structures.jpg",
+      img: "/assets/services/commercial-industrial-roofing.jpg",
     },
   ];
   return (
-    <div className="bg-gray-200 grid grid-cols-12 p-[80px_120px] max-2xl:p-[60px_100px] max-lg:p-[60px_80px] max-md:p-[50px_20px] gap-[60px_0px] max-lg:gap-[30px_0] items-start">
+    <div className="bg-gray-200 grid grid-cols-12 p-[80px_120px] max-2xl:p-[60px_100px] max-lg:p-[60px_80px] max-md:p-[50px_20px] gap-[40px_10px] max-lg:gap-[30px_0] items-start">
       <div className="col-span-full flex flex-col justify-center items-center text-center">
         <Heading title="Our Core Services" />
         <SubHeading
@@ -63,7 +63,14 @@ const OurServices = () => {
           alt="service"
           width={400}
           height={250}
-          className="object-cover w-full rounded-md"
+          className="object-cover w-full rounded-[20px_60px] max-lg:hidden"
+        />
+        <Image
+          src={"/assets/services/serviceMob.jpg"}
+          alt="service"
+          width={400}
+          height={250}
+          className="object-cover w-full rounded-[20px_60px] lg:hidden"
         />
       </div>
       <HomeServiceSlider servicesData={servicesData} />
