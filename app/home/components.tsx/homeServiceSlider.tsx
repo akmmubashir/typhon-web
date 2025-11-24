@@ -115,7 +115,7 @@ const HomeServiceSlider = ({
       `}</style>
       <Slider ref={sliderRef} {...settings}>
         {servicesData.map((service) => (
-          <div key={service.id}>
+          <div key={service.id} className="pb-5">
             <div className="bg-white rounded-xl shadow-md flex flex-col h-full overflow-hidden">
               <Image
                 src={service.img}
@@ -125,14 +125,14 @@ const HomeServiceSlider = ({
                 className="object-cover w-full h-[200px] max-sm:h-[180px]"
               />
               <div className="p-5 max-sm:p-4 h-full">
-                <SubHeading title={service.title} />
-                <Paragraph title={service.description} className="text-black" />
+                <SubHeading title={service.title} className="line-clamp-2" />
+                <Paragraph title={service.description} className="text-black line-clamp-2" />
               </div>
             </div>
           </div>
         ))}
       </Slider>
-      <div className="w-full flex justify-end mt-4 max-sm:justify-center">
+      <div className="w-full flex justify-end max-sm:justify-center">
         <div className="flex gap-2.5">
           <button
             onClick={handlePrev}
