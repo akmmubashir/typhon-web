@@ -139,14 +139,22 @@ const HomeServiceSlider = ({
             className="aspect-square bg-[#fa4729] hover:bg-[#db2b0e] cursor-pointer text-white px-3 py-2 rounded-full text-sm max-sm:px-2 max-sm:py-2"
             aria-label="Previous"
           >
-            <ArrowLeft size="w-6 h-6 max-sm:w-5 max-sm:h-5" color="stroke-white" stroke="1.5" />
+            <ArrowLeft
+              size="w-6 h-6 max-sm:w-5 max-sm:h-5"
+              color="stroke-white"
+              stroke="1.5"
+            />
           </button>
           <button
             onClick={handleNext}
             className="aspect-square bg-[#fa4729] hover:bg-[#db2b0e] cursor-pointer text-white px-3 py-2 rounded-full text-sm max-sm:px-2 max-sm:py-2"
             aria-label="Next"
           >
-            <ArrowRight size="w-6 h-6 max-sm:w-5 max-sm:h-5" color="stroke-white" stroke="1.5" />
+            <ArrowRight
+              size="w-6 h-6 max-sm:w-5 max-sm:h-5"
+              color="stroke-white"
+              stroke="1.5"
+            />
           </button>
         </div>
       </div>
