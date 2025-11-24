@@ -126,7 +126,10 @@ const HomeServiceSlider = ({
               />
               <div className="p-5 max-sm:p-4 h-full">
                 <SubHeading title={service.title} className="line-clamp-2" />
-                <Paragraph title={service.description} className="text-black line-clamp-2" />
+                <Paragraph
+                  title={service.description}
+                  className="text-black line-clamp-2"
+                />
               </div>
             </div>
           </div>

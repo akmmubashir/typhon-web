@@ -5,6 +5,7 @@ import AboutSection from "./components.tsx/aboutSection";
 import OurServices from "./components.tsx/ourServices";
 import OurProducts from "./components.tsx/ourProducts";
 import Footer from "../components/footer";
+import WhyChooseUs from "./components.tsx/whyChooseUs";
 
 const HomePage = () => {
   return (
@@ -14,6 +15,7 @@ const HomePage = () => {
       <AboutSection />
       <OurServices />
       <OurProducts />
+      <WhyChooseUs />
       <Footer />
     </div>
   );
