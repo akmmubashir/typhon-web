@@ -7,7 +7,7 @@ import { navigation } from "../utils/data/navigation";
 const Footer = () => {
   return (
     <React.Fragment>
-      <div className="bg-[#fa4729]/85 grid grid-cols-12 p-[80px_120px] max-2xl:p-[60px_100px] max-lg:p-[60px_80px] max-md:p-[50px_20px] gap-[60px_40px] max-lg:gap-[40px_0] items-start">
+      <div className="bg-[#db2b0e]/85 grid grid-cols-12 p-[80px_120px] max-2xl:p-[60px_100px] max-lg:p-[60px_80px] max-md:p-[50px_20px] gap-[60px_40px] max-lg:gap-[40px_0] items-start">
         <div className="col-span-3 max-lg:col-span-full flex flex-col justify-start gap-2.5">
           <Link href="/" className="w-fit">
             <Image
