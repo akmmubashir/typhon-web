@@ -79,9 +79,23 @@ const HomeServiceSlider = ({
         .slick-slider-wrapper .slick-slide > div {
           padding: 0 10px;
         }
+        .slick-slider-wrapper .slick-list {
+          margin: 0 -10px;
+        }
         @media (max-width: 768px) {
           .slick-slider-wrapper .slick-slide > div {
+            padding: 0 5px;
+          }
+          .slick-slider-wrapper .slick-list {
+            margin: 0 -5px;
+          }
+        }
+        @media (max-width: 640px) {
+          .slick-slider-wrapper .slick-slide > div {
             padding: 0;
+          }
+          .slick-slider-wrapper .slick-list {
+            margin: 0;
           }
         }
       `}</style>
