@@ -1,3 +1,4 @@
+import { CommonButton } from "@/app/components/common";
 import Link from "next/link";
 import React from "react";
 
@@ -31,12 +32,10 @@ const HeroSection = () => {
           craftsmanship with unmatched precision.
         </p>
         <div className="flex gap-4 max-lg:gap-2.5">
-          <button className="cursor-pointer bg-[#fa4729] hover:bg-[#db2b0e] text-white text-[16px] max-lg:text-[14px] p-[10px_20px] rounded-md mt-4 inline-block">
-            Get a Free Quote
-          </button>
+          <CommonButton title="Get a Free Quote" />
           <Link
             href="/projects"
-            className="bg-white/10 hover:bg-white/20 border border-white/50 text-white text-[16px] max-lg:text-[14px] p-[10px_20px] rounded-md mt-4 inline-block"
+            className="bg-white/10 hover:bg-white/20 border border-white/50 text-white font-medium text-[16px] max-lg:text-[14px] p-[10px_20px] rounded-md mt-4 inline-block"
           >
             View Our Projects
           </Link>

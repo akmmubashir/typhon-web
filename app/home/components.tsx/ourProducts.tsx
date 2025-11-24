@@ -1,7 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { Heading, Paragraph, SubHeading } from "@/app/components/common";
+import {
+  Heading,
+  LinkButton,
+  Paragraph,
+  SubHeading,
+} from "@/app/components/common";
 
 const OurProducts = () => {
   //   const productsData = [
@@ -76,12 +80,7 @@ const OurProducts = () => {
           />
         </div>
         <div className="">
-          <Link
-            href={"/about"}
-            className="uppercase bg-black/10 hover:bg-black/20 border border-black/10 text-black font-medium text-[16px] max-lg:text-[14px] p-[10px_20px] rounded-md mt-4 inline-block"
-          >
-            know more
-          </Link>
+          <LinkButton title="know more" link="/" className="uppercase" />
         </div>
       </div>
       <div className="col-span-5 max-lg:col-span-full relative">

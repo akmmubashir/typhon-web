@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export const Heading = ({
   title,
@@ -43,5 +44,45 @@ export const Paragraph = ({
 }) => {
   return (
     <p className={`${className} text-[16px] max-lg:text-[14px]`}>{title}</p>
+  );
+};
+export const LinkButton = ({
+  title,
+  className,
+  link,
+}: {
+  title: string;
+  className?: string;
+  link?: string;
+}) => {
+  return (
+    <Link
+      href={link ? link : "/"}
+      className={`cursor-pointer bg-[#fa4729] hover:bg-[#db2b0e] text-white font-medium text-[16px] max-lg:text-[14px] p-[10px_20px] rounded-md mt-4 inline-block ${
+        className ? className : ""
+      }`}
+    >
+      {title}
+    </Link>
+  );
+};
+export const CommonButton = ({
+  title,
+  className,
+  onClick,
+}: {
+  title: string;
+  className?: string;
+  onClick?: () => void;
+}) => {
+  return (
+    <button
+      onClick={onClick}
+      className={`cursor-pointer bg-[#fa4729] hover:bg-[#db2b0e] text-white font-medium text-[16px] max-lg:text-[14px] p-[10px_20px] rounded-md mt-4 inline-block ${
+        className ? className : ""
+      }`}
+    >
+      {title}
+    </button>
   );
 };

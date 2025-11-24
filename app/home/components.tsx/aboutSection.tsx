@@ -1,7 +1,11 @@
 import React from "react";
-import { Heading, Paragraph, SubHeading } from "@/app/components/common";
+import {
+  Heading,
+  LinkButton,
+  Paragraph,
+  SubHeading,
+} from "@/app/components/common";
 import Image from "next/image";
-import Link from "next/link";
 
 const AboutSection = () => {
   return (
@@ -46,14 +50,8 @@ const AboutSection = () => {
             className="text-[#2a2a2a] mt-3 max-lg:mt-2"
           />
         </div>
-
         <div className="">
-          <Link
-            href={"/about"}
-            className="uppercase bg-black/10 hover:bg-black/20 border border-black/10 text-black font-medium text-[16px] max-lg:text-[14px] p-[10px_20px] rounded-md mt-4 inline-block"
-          >
-            know more
-          </Link>
+          <LinkButton title="know more" link="/about" className="uppercase" />
         </div>
       </div>
     </div>

@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { CommonButton } from "./common";
+import { navigation } from "../utils/data/navigation";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -15,14 +17,6 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const linksData = [
-    { title: "Home", url: "/" },
-    { title: "About", url: "/about" },
-    { title: "Services", url: "/services" },
-    { title: "Projects", url: "/projects" },
-    { title: "Contact", url: "/contact" },
-  ];
-
   return (
     <div
       className={`w-full flex items-center justify-between sticky top-0 z-50 p-[20px_120px] max-2xl:p-[20px_100px] max-lg:p-[10px_80px] max-md:p-[10px_20px] transition-colors duration-300 ${
@@ -34,7 +28,7 @@ const Header = () => {
           src={
             scrolled
               ? "/assets/common/logo.png"
-              : "/assets/common/logo-white.png"
+              : "/assets/common/logo-mixed.png"
           }
           alt="Logo"
           className="w-full h-[70px] max-lg:h-[50px] object-contain"
@@ -43,7 +37,7 @@ const Header = () => {
         />
       </Link>
       <div className="flex items-center gap-5 max-lg:hidden">
-        {linksData.map((link) => (
+        {navigation.map((link) => (
           <Link
             key={link.title}
             href={link.url}
@@ -58,9 +52,7 @@ const Header = () => {
         ))}
       </div>
       <div>
-        <button className="cursor-pointer bg-[#fa4729] hover:bg-[#db2b0e] text-white text-[16px] max-lg:text-[14px] p-[10px_20px] max-lg:p-[6px_14px] rounded">
-          Let&apos;s Talk
-        </button>
+        <CommonButton title=" Let's Talk" />
       </div>
     </div>
   );
