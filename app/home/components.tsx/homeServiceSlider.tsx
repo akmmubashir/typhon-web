@@ -101,16 +101,16 @@ const HomeServiceSlider = ({
       `}</style>
       <Slider ref={sliderRef} {...settings}>
         {servicesData.map((service) => (
-          <div key={service.id} className="">
+          <div key={service.id}>
             <div className="bg-white rounded-xl shadow-md flex flex-col h-full overflow-hidden">
               <Image
                 src={service.img}
                 alt={service.title}
                 width={400}
                 height={250}
-                className="object-cover w-full h-[200px]"
+                className="object-cover w-full h-[200px] max-sm:h-[180px]"
               />
-              <div className="p-5 h-full">
+              <div className="p-5 max-sm:p-4 h-full">
                 <SubHeading title={service.title} />
                 <Paragraph title={service.description} className="text-black" />
               </div>
@@ -118,21 +118,21 @@ const HomeServiceSlider = ({
           </div>
         ))}
       </Slider>
-      <div className="w-full flex justify-end mt-4">
+      <div className="w-full flex justify-end mt-4 max-sm:justify-center">
         <div className="flex gap-2.5">
           <button
             onClick={handlePrev}
-            className="aspect-square bg-[#fa4729] hover:bg-[#db2b0e] cursor-pointer text-white px-3 py-2 rounded-full text-sm"
+            className="aspect-square bg-[#fa4729] hover:bg-[#db2b0e] cursor-pointer text-white px-3 py-2 rounded-full text-sm max-sm:px-2 max-sm:py-2"
             aria-label="Previous"
           >
-            <ArrowLeft size="w-6 h-6" color="stroke-white" stroke="1.5" />
+            <ArrowLeft size="w-6 h-6 max-sm:w-5 max-sm:h-5" color="stroke-white" stroke="1.5" />
           </button>
           <button
             onClick={handleNext}
-            className="aspect-square bg-[#fa4729] hover:bg-[#db2b0e] cursor-pointer text-white px-3 py-2 rounded-full text-sm"
+            className="aspect-square bg-[#fa4729] hover:bg-[#db2b0e] cursor-pointer text-white px-3 py-2 rounded-full text-sm max-sm:px-2 max-sm:py-2"
             aria-label="Next"
           >
-            <ArrowRight size="w-6 h-6" color="stroke-white" stroke="1.5" />
+            <ArrowRight size="w-6 h-6 max-sm:w-5 max-sm:h-5" color="stroke-white" stroke="1.5" />
           </button>
         </div>
       </div>
