@@ -52,7 +52,7 @@ const Header = () => {
         ))}
       </div>
       <div>
-        <CommonButton title=" Let's Talk" />
+        <CommonButton title="Let's Talk" className="mt-0!" />
       </div>
     </div>
   );
