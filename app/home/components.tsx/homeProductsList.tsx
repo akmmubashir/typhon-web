@@ -36,7 +36,9 @@ const HomeProductsList = ({
       <div className="grid grid-cols-12 gap-[30px]">
         {visible.map((product) => (
           <Link
-            href={`/products/${product.title.toLowerCase().replace(/ /g, "-")}`}
+            href={`/india/products/${product.title
+              .toLowerCase()
+              .replace(/ /g, "-")}`}
             key={product.id}
             className="relative col-span-3 max-lg:col-span-6 max-md:col-span-full flex flex-col items-center text-center overflow-hidden shadow-lg rounded-xl bg-white group"
           >

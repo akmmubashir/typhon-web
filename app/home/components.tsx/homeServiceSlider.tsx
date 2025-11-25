@@ -126,7 +126,9 @@ const HomeServiceSlider = ({
                 className="object-cover w-full h-[200px] group-hover:scale-105 transition-transform duration-300 max-sm:h-[180px]"
               />
               <Link
-                href={service.title.toLowerCase().replace(/\s+/g, "-")}
+                href={`/india/services/${service.title
+                  .toLowerCase()
+                  .replace(/\s+/g, "-")}`}
                 className="p-5 max-sm:p-4 h-full"
               >
                 <SubHeading title={service.title} className="line-clamp-2" />
