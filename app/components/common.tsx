@@ -12,7 +12,7 @@ export const Heading = ({
     <h2
       className={`${
         className ? className : "text-black"
-      } text-[28px] max-2xl:text-[24px] max-lg:text-[20px] font-semibold mb-2`}
+      } text-[30px] max-2xl:text-[26px] max-lg:text-[22px] font-semibold mb-2`}
     >
       {title}
     </h2>

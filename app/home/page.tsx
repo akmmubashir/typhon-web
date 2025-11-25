@@ -7,6 +7,7 @@ import OurProducts from "./components.tsx/ourProducts";
 import Footer from "../components/footer";
 import WhyChooseUs from "../components/whyChooseUs";
 import Testimonials from "../components/testimonials";
+import Faq from "../components/faq";
 
 const HomePage = () => {
   return (
@@ -17,6 +18,7 @@ const HomePage = () => {
       <OurServices />
       <OurProducts />
       <WhyChooseUs />
+      <Faq />
       <Testimonials />
       <Footer />
     </div>
