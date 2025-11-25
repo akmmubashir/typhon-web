@@ -8,6 +8,7 @@ import Footer from "../components/footer";
 import WhyChooseUs from "../components/whyChooseUs";
 import Testimonials from "../components/testimonials";
 import Faq from "../components/faq";
+import ContactSection from "../components/contactSection";
 
 const HomePage = () => {
   return (
@@ -20,6 +21,7 @@ const HomePage = () => {
       <WhyChooseUs />
       <Faq />
       <Testimonials />
+      <ContactSection />
       <Footer />
     </div>
   );
