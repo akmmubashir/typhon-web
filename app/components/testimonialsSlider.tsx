@@ -75,7 +75,7 @@ const TestimonialsSlider = ({
       <Slider ref={sliderRef} {...settings}>
         {testimonialsData.map((testimonial) => (
           <div key={testimonial.id}>
-            <div className="flex flex-col items-start max-sm:px-4 max-sm:py-8">
+            <div className="flex flex-col items-start">
               <div className="flex gap-10 max-lg:gap-5">
                 <div>
                   <QuotesIcon className="fill-[#fa4729] w-10 h-10" />
