@@ -29,7 +29,7 @@ const Faqlist = ({ faqData }: Props) => {
                 !open ? "border-b border-gray-200 items-center" : "items-start"
               }`}
             >
-              <span className="font-semibold text-[#181d4e] text-[24px] max-lg:text-[18px]">
+              <span className="font-semibold text-[#181d4e] text-[24px] max-2xl:text-[20px] max-lg:text-[16px]">
                 {item.Q}
               </span>
               <span
