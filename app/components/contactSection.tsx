@@ -17,7 +17,7 @@ const ContactSection = () => {
           <div>
             <Link
               href="mailto:contact@example.com"
-              className="text-[#fa4729] hover:underline underline-offset-4 text-[18px] font-medium"
+              className="text-[#fa4729] hover:underline underline-offset-4 text-[18px] max-lg:text-[16px] font-medium"
             >
               contact@example.com
             </Link>
@@ -25,7 +25,7 @@ const ContactSection = () => {
           <div className="">
             <Link
               href="tel:+917559096327"
-              className="text-[#181d4e] text-[22px] font-medium hover:underline underline-offset-4"
+              className="text-[#181d4e] text-[22px] max-lg:text-[18px] font-medium hover:underline underline-offset-4"
             >
               +91 75590 96327
             </Link>
