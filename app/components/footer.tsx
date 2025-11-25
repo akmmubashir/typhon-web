@@ -7,7 +7,7 @@ import { navigation } from "../utils/data/navigation";
 const Footer = () => {
   return (
     <React.Fragment>
-      <div className="bg-[#db2b0e]/85 grid grid-cols-12 p-[80px_120px] max-2xl:p-[60px_100px] max-lg:p-[60px_80px] max-md:p-[50px_20px] gap-[60px_40px] max-lg:gap-[40px_0] items-start">
+      <div className="bg-[#db2b0e]/95 grid grid-cols-12 p-[80px_120px] max-2xl:p-[60px_100px] max-lg:p-[60px_80px] max-md:p-[50px_20px] gap-[60px_40px] max-lg:gap-[40px_0] items-start">
         <div className="col-span-3 max-lg:col-span-full flex flex-col justify-start gap-2.5">
           <Link href="/" className="w-fit">
             <Image
@@ -74,7 +74,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="p-5 text-center bg-[#2a2a2a]">
+      <div className="p-5 text-center bg-[#0b0d26]">
         <Paragraph
           title="© 2025 Typhon. All rights reserved"
           className="text-white!"

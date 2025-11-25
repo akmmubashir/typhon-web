@@ -40,3 +40,7 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-thumb:hover {
   background-color: #606060;
 }
+.slick-dots li {
+  width: auto !important;
+  height: auto !important;
+}

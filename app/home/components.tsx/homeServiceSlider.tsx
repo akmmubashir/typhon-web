@@ -6,6 +6,7 @@ import React, { useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Link from "next/link";
 
 type Service = {
   id: number;
@@ -115,22 +116,25 @@ const HomeServiceSlider = ({
       `}</style>
       <Slider ref={sliderRef} {...settings}>
         {servicesData.map((service) => (
-          <div key={service.id} className="pb-5">
+          <div key={service.id} className="pb-5 group">
             <div className="bg-white rounded-xl shadow-md flex flex-col h-full overflow-hidden">
               <Image
                 src={service.img}
                 alt={service.title}
                 width={400}
                 height={250}
-                className="object-cover w-full h-[200px] max-sm:h-[180px]"
+                className="object-cover w-full h-[200px] group-hover:scale-105 transition-transform duration-300 max-sm:h-[180px]"
               />
-              <div className="p-5 max-sm:p-4 h-full">
+              <Link
+                href={service.title.toLowerCase().replace(/\s+/g, "-")}
+                className="p-5 max-sm:p-4 h-full"
+              >
                 <SubHeading title={service.title} className="line-clamp-2" />
                 <Paragraph
                   title={service.description}
                   className="text-black line-clamp-2"
                 />
-              </div>
+              </Link>
             </div>
           </div>
         ))}
