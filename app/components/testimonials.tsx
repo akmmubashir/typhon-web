@@ -54,7 +54,7 @@ const Testimonials = () => {
           width={1200}
           height={800}
         />
-        <div className="bg-[#13163D] flex flex-col gap-10 max-lg:gap-5 lg:absolute bottom-[-60px] left-0 w-2/5 max-2xl:w-3/5 max-xl:w-4/5 max-lg:w-full p-[120px] max-2xl:p-[100px] max-lg:p-[60px_80px] max-md:p-[50px_20px]">
+        <div className="bg-[#13163D] flex flex-col gap-10 max-lg:gap-5 lg:absolute bottom-[-60px] left-0 w-2/5 max-2xl:w-3/5 max-xl:w-4/5 max-lg:w-full p-[120px] max-2xl:p-[100px] max-lg:p-[60px_80px_80px] max-md:p-[50px_20px_80px]">
           <div>
             <SubHeading
               title="Trusted by Businesses Across South India"
