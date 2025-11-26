@@ -2,10 +2,7 @@
 import { Paragraph, SubHeading } from "@/app/components/common";
 import { ArrowLeft, ArrowRight } from "@/app/components/icons";
 import Image from "next/image";
-import React, { useRef } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 
 type Service = {
@@ -24,121 +21,213 @@ const HomeServiceSlider = ({
   servicesData,
   autoplayIntervalMs = 3500,
 }: Props) => {
-  const sliderRef = useRef<Slider>(null);
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [slidesToShow, setSlidesToShow] = useState(3);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const autoplayRef = useRef<NodeJS.Timeout | null>(null);
 
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 700,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: autoplayIntervalMs,
-    arrows: false,
-    responsive: [
-      {
-        breakpoint: 5000,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+  // Responsive slides to show
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setSlidesToShow(1);
+      } else if (window.innerWidth < 1024) {
+        setSlidesToShow(2);
+      } else {
+        setSlidesToShow(3);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const totalSlides = servicesData.length;
+
+  // Create infinite loop by cloning slides
+  const extendedServices = [
+    ...servicesData.slice(-slidesToShow),
+    ...servicesData,
+    ...servicesData.slice(0, slidesToShow),
+  ];
+
+  const handleNext = useCallback(() => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev + 1);
+  }, [isTransitioning]);
+
+  const handlePrev = useCallback(() => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev - 1);
+  }, [isTransitioning]);
+
+  const resetAutoplay = useCallback(() => {
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+    }
+    autoplayRef.current = setInterval(() => {
+      handleNext();
+    }, autoplayIntervalMs);
+  }, [autoplayIntervalMs, handleNext]);
+
+  // Handle infinite loop reset
+  useEffect(() => {
+    if (!isTransitioning) return;
+
+    const timer = setTimeout(() => {
+      setIsTransitioning(false);
+
+      // Reset position for infinite scroll
+      if (currentIndex >= totalSlides + 1) {
+        setCurrentIndex(1);
+      } else if (currentIndex <= 0) {
+        setCurrentIndex(totalSlides);
+      }
+    }, 700);
+
+    return () => clearTimeout(timer);
+  }, [currentIndex, isTransitioning, totalSlides]);
+
+  // Autoplay
+  useEffect(() => {
+    resetAutoplay();
+    return () => {
+      if (autoplayRef.current) {
+        clearInterval(autoplayRef.current);
+      }
+    };
+  }, [resetAutoplay]);
+
+  // Drag handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setStartX(e.pageX);
+    setDragOffset(0);
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+    }
   };
 
-  const handlePrev = () => {
-    sliderRef.current?.slickPrev();
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true);
+    setStartX(e.touches[0].pageX);
+    setDragOffset(0);
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+    }
   };
 
-  const handleNext = () => {
-    sliderRef.current?.slickNext();
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const diff = e.pageX - startX;
+    setDragOffset(diff);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    const diff = e.touches[0].pageX - startX;
+    setDragOffset(diff);
+  };
+
+  const handleDragEnd = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+
+    const threshold = 50;
+    if (dragOffset > threshold) {
+      handlePrev();
+    } else if (dragOffset < -threshold) {
+      handleNext();
+    }
+
+    setDragOffset(0);
+    resetAutoplay();
+  };
+
+  const getSlideWidth = () => {
+    if (slidesToShow === 1) return 100;
+    if (slidesToShow === 2) return 50;
+    return 33.333;
+  };
+
+  const getGapClass = () => {
+    if (slidesToShow === 1) return "gap-0";
+    if (slidesToShow === 2) return "gap-2.5";
+    return "gap-5";
   };
 
   return (
-    <div className="w-full col-span-7 max-lg:col-span-full slick-slider-wrapper">
-      <style jsx global>{`
-        .slick-slider-wrapper .slick-dots li button:before {
-          display: none;
-        }
-        .slick-slider-wrapper .slick-dots li.slick-active .slick-dot-btn {
-          background-color: #fa4729;
-        }
-        .slick-slider-wrapper .slick-slide > div {
-          padding: 0 10px;
-        }
-        .slick-slider-wrapper .slick-list {
-          margin: 0 -10px;
-        }
-        @media (max-width: 768px) {
-          .slick-slider-wrapper .slick-slide > div {
-            padding: 0 5px;
-          }
-          .slick-slider-wrapper .slick-list {
-            margin: 0 -5px;
-          }
-        }
-        @media (max-width: 640px) {
-          .slick-slider-wrapper .slick-slide > div {
-            padding: 0;
-          }
-          .slick-slider-wrapper .slick-list {
-            margin: 0;
-          }
-        }
-      `}</style>
-      <Slider ref={sliderRef} {...settings}>
-        {servicesData.map((service) => (
-          <div key={service.id} className="pb-5 group">
-            <div className="bg-white rounded-xl shadow-md flex flex-col h-full overflow-hidden">
-              <Image
-                src={service.img}
-                alt={service.title}
-                width={400}
-                height={250}
-                className="object-cover w-full h-[200px] group-hover:scale-105 transition-transform duration-300 max-sm:h-[180px]"
-              />
-              <Link
-                href={`/india/services/${service.title
-                  .toLowerCase()
-                  .replace(/\s+/g, "-")}`}
-                className="p-5 max-sm:p-4 h-full"
-              >
-                <SubHeading title={service.title} className="line-clamp-2" />
-                <Paragraph
-                  title={service.description}
-                  className="text-black line-clamp-2"
+    <div className="w-full col-span-7 max-lg:col-span-full">
+      <div
+        className="overflow-hidden pb-5 cursor-grab active:cursor-grabbing"
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleDragEnd}
+        onMouseLeave={handleDragEnd}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleDragEnd}
+      >
+        <div
+          ref={sliderRef}
+          className={`flex ${getGapClass()} ${
+            isTransitioning
+              ? "transition-transform duration-700 ease-in-out"
+              : ""
+          }`}
+          style={{
+            transform: `translateX(calc(-${
+              currentIndex *
+              (getSlideWidth() +
+                (slidesToShow === 3 ? 1.667 : slidesToShow === 2 ? 0.625 : 0))
+            }% + ${dragOffset}px))`,
+          }}
+        >
+          {extendedServices.map((service, index) => (
+            <div
+              key={`${service.id}-${index}`}
+              className="shrink-0 group"
+              style={{ width: `${getSlideWidth()}%` }}
+            >
+              <div className="bg-white rounded-xl shadow-md flex flex-col h-full overflow-hidden">
+                <Image
+                  src={service.img}
+                  alt={service.title}
+                  width={400}
+                  height={250}
+                  className="object-cover w-full h-[200px] group-hover:scale-105 transition-transform duration-300 max-sm:h-[180px]"
                 />
-              </Link>
+                <Link
+                  href={`/india/services/${service.title
+                    .toLowerCase()
+                    .replace(/\s+/g, "-")}`}
+                  className="p-5 max-sm:p-4 h-full"
+                >
+                  <SubHeading title={service.title} className="line-clamp-2" />
+                  <Paragraph
+                    title={service.description}
+                    className="text-black line-clamp-2"
+                  />
+                </Link>
+              </div>
             </div>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </div>
+      </div>
       <div className="w-full flex justify-end max-sm:justify-center">
         <div className="flex gap-2.5">
           <button
             onClick={handlePrev}
-            className="aspect-square bg-[#fa4729] hover:bg-[#db2b0e] cursor-pointer text-white px-3 py-2 rounded-full text-sm max-sm:px-2 max-sm:py-2"
+            // disabled={isTransitioning}
+            className="aspect-square bg-[#fa4729] hover:bg-[#db2b0e] cursor-pointer text-white px-3 py-2 rounded-full text-sm max-sm:px-2 max-sm:py-2 disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Previous"
           >
             <ArrowLeft
@@ -149,7 +238,8 @@ const HomeServiceSlider = ({
           </button>
           <button
             onClick={handleNext}
-            className="aspect-square bg-[#fa4729] hover:bg-[#db2b0e] cursor-pointer text-white px-3 py-2 rounded-full text-sm max-sm:px-2 max-sm:py-2"
+            // disabled={isTransitioning}
+            className="aspect-square bg-[#fa4729] hover:bg-[#db2b0e] cursor-pointer text-white px-3 py-2 rounded-full text-sm max-sm:px-2 max-sm:py-2 disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Next"
           >
             <ArrowRight
