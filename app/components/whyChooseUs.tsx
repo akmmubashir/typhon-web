@@ -70,7 +70,7 @@ const WhyChooseUs = () => {
       </div>
       <div className="col-span-6 max-lg:col-span-full relative flex items-center max-lg:order-1">
         <Image
-          src="/assets/common/whychooseus.jpg"
+          src="/assets/common/whychooseus.webp"
           alt="About Us"
           width={600}
           height={400}
@@ -78,7 +78,7 @@ const WhyChooseUs = () => {
         />
         <div className="w-3/4 absolute right-0 top-1/2 -translate-y-1/2 shadow-lg">
           <Image
-            src="/assets/common/whychooseus1.jpg"
+            src="/assets/common/whychooseus1.webp"
             alt="Our Team"
             width={600}
             height={400}

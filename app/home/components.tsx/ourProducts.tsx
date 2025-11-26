@@ -14,47 +14,47 @@ const OurProducts = () => {
     {
       id: 1,
       title: "Space Frames",
-      img: "/assets/products/space-frames.jpg",
+      img: "/assets/products/space-frames.webp",
     },
     {
       id: 2,
       title: "PEB Components",
-      img: "/assets/products/peb-components.jpg",
+      img: "/assets/products/peb-components.webp",
     },
     {
       id: 3,
       title: "Steel Trusses",
-      img: "/assets/products/steel-trusses.jpg",
+      img: "/assets/products/steel-trusses.webp",
     },
     {
       id: 4,
       title: "Polycarbonate Roofing",
-      img: "/assets/products/polycarbonate-roofing.jpg",
+      img: "/assets/products/polycarbonate-roofing.webp",
     },
     {
       id: 5,
       title: "Tensile Fabrics",
-      img: "/assets/products/tensile-fabrics.jpg",
+      img: "/assets/products/tensile-fabrics.webp",
     },
     {
       id: 6,
       title: "Metal Roofing Sheets",
-      img: "/assets/products/metal-roofing-sheets.jpg",
+      img: "/assets/products/metal-roofing-sheets.webp",
     },
     {
       id: 7,
       title: "Sandwich Panels",
-      img: "/assets/products/sandwich-panels.jpg",
+      img: "/assets/products/sandwich-panels.webp",
     },
     {
       id: 8,
       title: "Steel Walkways & Staircases",
-      img: "/assets/products/steel-walkways-staircases.jpg",
+      img: "/assets/products/steel-walkways-staircases.webp",
     },
     {
       id: 9,
       title: "Custom Engineered Steel Works",
-      img: "/assets/products/custom-engineered-steel-works.jpg",
+      img: "/assets/products/custom-engineered-steel-works.webp",
     },
   ];
   return (
@@ -78,7 +78,7 @@ const OurProducts = () => {
       </div>
       <div className="col-span-5 max-lg:col-span-full relative max-lg:order-1">
         <Image
-          src="/assets/products/product2.jpg"
+          src="/assets/products/product2.webp"
           alt="About Us"
           width={600}
           height={400}
@@ -86,7 +86,7 @@ const OurProducts = () => {
         />
         <div className="w-2/5 absolute bottom-[-60px] max-lg:-bottom-5 right-[50px] max-lg:right-5 shadow-lg">
           <Image
-            src="/assets/products/product4.jpg"
+            src="/assets/products/product4.webp"
             alt="Our Team"
             width={600}
             height={400}
@@ -95,7 +95,7 @@ const OurProducts = () => {
         </div>
         <div className="w-2/5 absolute top-[-60px] max-lg:-top-10 left-[-50px] max-lg:-left-4 shadow-lg">
           <Image
-            src="/assets/products/product3.jpg"
+            src="/assets/products/product3.webp"
             alt="Our Team"
             width={600}
             height={400}
