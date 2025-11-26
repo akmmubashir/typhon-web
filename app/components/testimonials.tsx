@@ -11,7 +11,7 @@ const Testimonials = () => {
       position: "CEO, Example Corp",
       feedback:
         "Typhon Structures provided us with exceptional service and top-quality products. Their team was professional and attentive to our needs.",
-      avatar: "/assets/common/about1.jpg",
+      avatar: "/assets/common/about1.webp",
     },
     {
       id: 2,
@@ -19,7 +19,7 @@ const Testimonials = () => {
       position: "Project Manager, BuildIt Inc.",
       feedback:
         "We were impressed with Typhon's expertise and commitment to quality. Our project was completed on time and exceeded our expectations.",
-      avatar: "/assets/common/about1.jpg",
+      avatar: "/assets/common/about1.webp",
     },
     {
       id: 3,
@@ -27,7 +27,7 @@ const Testimonials = () => {
       position: "Operations Head, SteelWorks Ltd.",
       feedback:
         "Typhon's innovative solutions and skilled workforce made a significant difference in our construction project. Highly recommended!",
-      avatar: "/assets/common/about1.jpg",
+      avatar: "/assets/common/about1.webp",
     },
     {
       id: 4,
@@ -35,7 +35,7 @@ const Testimonials = () => {
       position: "Director, ConstructCo",
       feedback:
         "From design to installation, Typhon Structures demonstrated professionalism and excellence. Their attention to detail ensured a flawless execution.",
-      avatar: "/assets/common/about1.jpg",
+      avatar: "/assets/common/about1.webp",
     },
   ];
   const listData = [
