@@ -24,18 +24,14 @@ const HomeServiceSlider = ({
   const [currentIndex, setCurrentIndex] = useState(1);
   const [slidesToShow, setSlidesToShow] = useState(3);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [dragOffset, setDragOffset] = useState(0);
-  const sliderRef = useRef<HTMLDivElement>(null);
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
 
   // Responsive slides to show
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 640) {
+      if (window.innerWidth < 600) {
         setSlidesToShow(1);
-      } else if (window.innerWidth < 1024) {
+      } else if (window.innerWidth < 1440) {
         setSlidesToShow(2);
       } else {
         setSlidesToShow(3);
@@ -82,13 +78,15 @@ const HomeServiceSlider = ({
     if (!isTransitioning) return;
 
     const timer = setTimeout(() => {
-      setIsTransitioning(false);
-
-      // Reset position for infinite scroll
+      // Reset position for infinite scroll without transition
       if (currentIndex >= totalSlides + 1) {
-        setCurrentIndex(1);
+        setIsTransitioning(false);
+        setTimeout(() => setCurrentIndex(1), 50);
       } else if (currentIndex <= 0) {
-        setCurrentIndex(totalSlides);
+        setIsTransitioning(false);
+        setTimeout(() => setCurrentIndex(totalSlides), 50);
+      } else {
+        setIsTransitioning(false);
       }
     }, 700);
 
@@ -105,53 +103,6 @@ const HomeServiceSlider = ({
     };
   }, [resetAutoplay]);
 
-  // Drag handlers
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
-    setStartX(e.pageX);
-    setDragOffset(0);
-    if (autoplayRef.current) {
-      clearInterval(autoplayRef.current);
-    }
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setIsDragging(true);
-    setStartX(e.touches[0].pageX);
-    setDragOffset(0);
-    if (autoplayRef.current) {
-      clearInterval(autoplayRef.current);
-    }
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const diff = e.pageX - startX;
-    setDragOffset(diff);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging) return;
-    const diff = e.touches[0].pageX - startX;
-    setDragOffset(diff);
-  };
-
-  const handleDragEnd = () => {
-    if (!isDragging) return;
-    setIsDragging(false);
-
-    const threshold = 50;
-    if (dragOffset > threshold) {
-      handlePrev();
-    } else if (dragOffset < -threshold) {
-      handleNext();
-    }
-
-    setDragOffset(0);
-    resetAutoplay();
-  };
-
   const getSlideWidth = () => {
     if (slidesToShow === 1) return 100;
     if (slidesToShow === 2) return 50;
@@ -166,29 +117,19 @@ const HomeServiceSlider = ({
 
   return (
     <div className="w-full col-span-7 max-lg:col-span-full">
-      <div
-        className="overflow-hidden pb-5 cursor-grab active:cursor-grabbing"
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleDragEnd}
-        onMouseLeave={handleDragEnd}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleDragEnd}
-      >
+      <div className="overflow-hidden pb-5">
         <div
-          ref={sliderRef}
           className={`flex ${getGapClass()} ${
             isTransitioning
               ? "transition-transform duration-700 ease-in-out"
               : ""
           }`}
           style={{
-            transform: `translateX(calc(-${
+            transform: `translateX(-${
               currentIndex *
               (getSlideWidth() +
                 (slidesToShow === 3 ? 1.667 : slidesToShow === 2 ? 0.625 : 0))
-            }% + ${dragOffset}px))`,
+            }%)`,
           }}
         >
           {extendedServices.map((service, index) => (
@@ -202,14 +143,15 @@ const HomeServiceSlider = ({
                   src={service.img}
                   alt={service.title}
                   width={400}
+                  aria-disabled="true"
                   height={250}
-                  className="object-cover w-full h-[200px] group-hover:scale-105 transition-transform duration-300 max-sm:h-[180px]"
+                  className="object-cover  w-full h-[200px] max-xl:h-[180px] group-hover:scale-105 transition-transform duration-300 max-sm:h-[180px]"
                 />
                 <Link
                   href={`/india/services/${service.title
                     .toLowerCase()
                     .replace(/\s+/g, "-")}`}
-                  className="p-5 max-sm:p-4 h-full"
+                  className="p-5 max-2xl:p-[15px] max-md:p-4 h-full"
                 >
                   <SubHeading title={service.title} className="line-clamp-2" />
                   <Paragraph
