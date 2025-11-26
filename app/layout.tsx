@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: "Typhon",
     images: [
       {
-        url: "/assets/common/home.jpg",
+        url: "/assets/common/home.webp",
         width: 1200,
         height: 630,
         alt: "Typhon - Premium Roofing & Steel Structure Solutions",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
       "Typhon - Premium Roofing & Steel Structure Solutions in South India",
     description:
       "Typhon specializes in space frames, PEB buildings, tensile roofing, sandwich panel systems, and steel fabrication across Kerala, Tamil Nadu, and Karnataka. High-quality, durable roofing and structural solutions built for generations.",
-    images: ["/assets/common/home.jpg"],
+    images: ["/assets/common/home.webp"],
   },
 };
 
@@ -61,7 +61,7 @@ export default function RootLayout({
                 "Typhon provides premium roofing and steel structure solutions including space frames, PEB buildings, tensile roofing, steel fabrication, and sandwich panel systems across Kerala, Tamil Nadu, and Karnataka.",
               url: "https://www.typhonstructures.com/",
               logo: "https://www.typhonstructures.com/logo.png",
-              image: "https://www.typhonstructures.com/og-image.jpg",
+              image: "https://www.typhonstructures.com/og-image.webp",
               areaServed: ["Kerala", "Tamil Nadu", "Karnataka"],
               sameAs: [
                 "https://www.facebook.com/typhon",
