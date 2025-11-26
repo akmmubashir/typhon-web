@@ -31,7 +31,7 @@ const Faq = () => {
         <Heading title="Frequently Asked Questions" className="" />
         <SubHeading
           title="Answers to Common Roofing & Structural Queries"
-          className="text-[#fa4729] mb-0!"
+          className="text-[#fa4729] mb-0! uppercase"
         />
       </div>
       <Faqlist faqData={faqData} />

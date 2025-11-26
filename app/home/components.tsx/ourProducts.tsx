@@ -60,7 +60,10 @@ const OurProducts = () => {
   return (
     <div className="grid grid-cols-12 p-[80px_120px] max-2xl:p-[60px_100px] max-lg:p-[60px_80px] max-md:p-[50px_20px] gap-[60px_40px] max-lg:gap-[40px_0] items-center">
       <div className="col-span-7 max-lg:col-span-full  max-lg:order-2">
-        <SubHeading title="Engineered for Strength, Safety & Longevity" />
+        <SubHeading
+          title="Engineered for Strength, Safety & Longevity"
+          className="uppercase"
+        />
         <Heading title="Products & Structural Solutions" />
         <div>
           <Paragraph

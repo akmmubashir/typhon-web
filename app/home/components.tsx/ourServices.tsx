@@ -50,7 +50,7 @@ const OurServices = () => {
         <Heading title="Our Core Services" className="text-white" />
         <SubHeading
           title="Complete Roofing & Structural Solutions Under One Roof"
-          className="text-[#fa4729]"
+          className="text-[#fa4729] uppercase"
         />
         <Paragraph
           title="We provide a wide range of specialized services tailored for industrial, commercial, and institutional sectors:"

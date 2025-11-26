@@ -25,7 +25,7 @@ const Footer = () => {
         </div>
         <div className="col-span-9 max-lg:col-span-full flex flex-wrap max-lg:flex-col justify-end gap-[60px] max-lg:gap-[20px_0]">
           <div className="">
-            <SubHeading title="Quick Links" className="text-white" />
+            <SubHeading title="Quick Links" className="text-white uppercase" />
             {navigation.map((link) => (
               <Link
                 key={link.title}
@@ -37,7 +37,7 @@ const Footer = () => {
             ))}
           </div>
           <div className="">
-            <SubHeading title="Our Services" className="text-white" />
+            <SubHeading title="Our Services" className="text-white uppercase" />
             {navigation.map((link) => (
               <Link
                 key={link.title}
@@ -49,7 +49,7 @@ const Footer = () => {
             ))}
           </div>
           <div className="">
-            <SubHeading title="Our Prodects" className="text-white" />
+            <SubHeading title="Our Prodects" className="text-white uppercase" />
             {navigation.map((link) => (
               <Link
                 key={link.title}
@@ -61,7 +61,10 @@ const Footer = () => {
             ))}
           </div>
           <div className="">
-            <SubHeading title="Social Profiles" className="text-white" />
+            <SubHeading
+              title="Social Profiles"
+              className="text-white uppercase"
+            />
             {navigation.map((link) => (
               <Link
                 key={link.title}

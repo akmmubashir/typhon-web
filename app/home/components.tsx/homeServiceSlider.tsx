@@ -153,7 +153,10 @@ const HomeServiceSlider = ({
                     .replace(/\s+/g, "-")}`}
                   className="p-5 max-2xl:p-[15px] max-md:p-4 h-full"
                 >
-                  <SubHeading title={service.title} className="line-clamp-2" />
+                  <SubHeading
+                    title={service.title}
+                    className="line-clamp-2 uppercase"
+                  />
                   <Paragraph
                     title={service.description}
                     className="text-black line-clamp-2"

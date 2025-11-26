@@ -53,7 +53,7 @@ const HomeProductsList = ({
             </div>
             <SubHeading
               title={product.title}
-              className="bg-white absolute bottom-0 mb-0! p-2.5 left-0 rounded-[0_20px_0_0]"
+              className="bg-white absolute bottom-0 mb-0! p-2.5 left-0 rounded-[0_20px_0_0] uppercase"
             />
           </Link>
         ))}

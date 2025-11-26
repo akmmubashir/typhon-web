@@ -7,7 +7,8 @@ import { navigation } from "../utils/data/navigation";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
-
+  const currentPath =
+    typeof window !== "undefined" ? window.location.pathname : "";
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -42,9 +43,11 @@ const Header = () => {
             key={link.title}
             href={link.url}
             className={`uppercase font-medium text-[16px] ${
+              currentPath === link.url ? "text-[#fa4729]!" : ""
+            } ${
               !scrolled
-                ? "text-white hover:text-[#fa4729]"
-                : "text-black hover:text-[#fa4729]"
+                ? `text-white hover:text-[#fa4729]`
+                : `text-black hover:text-[#fa4729]`
             }`}
           >
             {link.title}

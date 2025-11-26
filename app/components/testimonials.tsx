@@ -58,7 +58,7 @@ const Testimonials = () => {
           <div>
             <SubHeading
               title="Trusted by Businesses Across South India"
-              className=""
+              className="uppercase"
             />
             <Heading
               title="Client Testimonials"

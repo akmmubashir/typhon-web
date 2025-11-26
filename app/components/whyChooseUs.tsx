@@ -49,7 +49,7 @@ const WhyChooseUs = () => {
       <div className="col-span-6 max-lg:col-span-full flex flex-col relative z-10 max-lg:order-2">
         <SubHeading
           title="Experience. Innovation. Precision. Quality."
-          className="text-[#fa4729]"
+          className="text-[#fa4729] uppercase"
         />
         <Heading
           title="Why Choose Typhon"

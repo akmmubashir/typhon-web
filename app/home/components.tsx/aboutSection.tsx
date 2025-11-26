@@ -38,7 +38,7 @@ const AboutSection = () => {
         </div>
       </div>
       <div className="col-span-7 max-lg:col-span-full">
-        <SubHeading title="who we are" />
+        <SubHeading title="who we are" className="uppercase" />
         <Heading title="About Typhon" />
         <div>
           <Paragraph

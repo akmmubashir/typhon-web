@@ -22,12 +22,12 @@ export const SubHeading = ({
   title,
   className,
 }: {
-  title: string;
+  title: string | React.ReactNode;
   className?: string;
 }) => {
   return (
     <h6
-      className={`${className} text-[#fa4729] uppercase text-[18px] max-lg:text-[16px] font-semibold mb-2 max-lg:mb-1`}
+      className={`${className} text-[#fa4729] text-[18px] max-lg:text-[16px] font-semibold mb-2 max-lg:mb-1`}
     >
       {title}
     </h6>
@@ -37,7 +37,7 @@ export const Paragraph = ({
   title,
   className,
 }: {
-  title: string;
+  title: string | React.ReactNode;
   className?: string;
 }) => {
   return (
