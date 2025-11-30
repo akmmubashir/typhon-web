@@ -14,7 +14,7 @@ const page = () => {
       <Banner
         title="About Us"
         // tagLine="Learn more about our company"
-        img="/assets/about/aboutBanner.webp"
+        img="/assets/common/aboutBanner.webp"
         titleClass="uppercase mt-8"
         tagLineClass="uppercase"
       />
