@@ -6,12 +6,15 @@ type Props = {
   img?: string;
   titleClass?: string;
   tagLineClass?: string;
+  fullscreen?: boolean;
 };
 
 const Banner = (props: Props) => {
   return (
     <div
-      className="relative h-[400px] flex items-center justify-center mt-[-110px] max-lg:mt-[-77px] w-full"
+      className={`relative ${
+        props.fullscreen ? "h-screen" : "h-[400px]"
+      } flex items-center justify-center mt-[-110px] max-lg:mt-[-77px] w-full`}
       style={{
         backgroundImage: `url(${props.img})`,
         backgroundRepeat: "no-repeat",

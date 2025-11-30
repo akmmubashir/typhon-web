@@ -5,7 +5,7 @@ import Link from "next/link";
 const HeroSection = () => {
   return (
     <div
-      className="h-screen w-full mt-[-110px] max-lg:mt-[-77px] relative flex p-[120px] max-2xl:p-[100px] max-lg:p-[60px_80px] max-md:p-[60px_20px]"
+      className="h-screen w-full mt-[-110px] max-lg:mt-[-70px] relative flex p-[120px] max-2xl:p-[100px] max-lg:p-[60px_80px] max-md:p-[60px_20px]"
       style={{
         backgroundImage: "url(/assets/common/home.webp)",
         backgroundRepeat: "no-repeat",

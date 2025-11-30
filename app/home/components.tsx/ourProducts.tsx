@@ -7,56 +7,10 @@ import {
   SubHeading,
 } from "@/app/components/common";
 import HomeProductsList from "./homeProductsList";
+import { productsData } from "@/app/utils/data/products";
 // import HomeProductSlider from "./homeProductSlider";
 
 const OurProducts = () => {
-  const productsData = [
-    {
-      id: 1,
-      title: "Space Frames",
-      img: "/assets/products/space-frames.webp",
-    },
-    {
-      id: 2,
-      title: "PEB Components",
-      img: "/assets/products/peb-components.webp",
-    },
-    {
-      id: 3,
-      title: "Steel Trusses",
-      img: "/assets/products/steel-trusses.webp",
-    },
-    {
-      id: 4,
-      title: "Polycarbonate Roofing",
-      img: "/assets/products/polycarbonate-roofing.webp",
-    },
-    {
-      id: 5,
-      title: "Tensile Fabrics",
-      img: "/assets/products/tensile-fabrics.webp",
-    },
-    {
-      id: 6,
-      title: "Metal Roofing Sheets",
-      img: "/assets/products/metal-roofing-sheets.webp",
-    },
-    {
-      id: 7,
-      title: "Sandwich Panels",
-      img: "/assets/products/sandwich-panels.webp",
-    },
-    {
-      id: 8,
-      title: "Steel Walkways & Staircases",
-      img: "/assets/products/steel-walkways-staircases.webp",
-    },
-    {
-      id: 9,
-      title: "Custom Engineered Steel Works",
-      img: "/assets/products/custom-engineered-steel-works.webp",
-    },
-  ];
   return (
     <div className="grid grid-cols-12 p-[80px_120px] max-2xl:p-[60px_100px] max-lg:p-[60px_80px] max-md:p-[50px_20px] gap-[60px_40px] max-lg:gap-[40px_0] items-center">
       <div className="col-span-7 max-lg:col-span-full  max-lg:order-2">
@@ -76,7 +30,11 @@ const OurProducts = () => {
           />
         </div>
         <div className="">
-          <LinkButton title="know more" link="/" className="uppercase" />
+          <LinkButton
+            title="know more"
+            link="/products"
+            className="uppercase"
+          />
         </div>
       </div>
       <div className="col-span-5 max-lg:col-span-full relative max-lg:order-1">
