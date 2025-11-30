@@ -57,7 +57,7 @@ const page = () => {
         titleClass="uppercase mt-8"
         tagLineClass="uppercase"
       />
-      <ContactSection />
+      <ContactSection title="Get in Touch" />
       <LocationMaps locations={locationsList} />
       <Footer />
     </div>
