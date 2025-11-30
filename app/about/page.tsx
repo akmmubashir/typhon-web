@@ -6,7 +6,6 @@ import Faq from "../components/faq";
 import Testimonials from "../components/testimonials";
 import AboutContent from "./components/aboutContent";
 import WhatWeOffer from "./components/whatWeOffer";
-import ContactSection from "../components/contactSection";
 
 const page = () => {
   return (
@@ -23,7 +22,6 @@ const page = () => {
       <WhatWeOffer />
       <Faq />
       <Testimonials />
-      <ContactSection />
       <Footer />
     </div>
   );
