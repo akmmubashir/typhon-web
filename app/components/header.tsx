@@ -7,8 +7,8 @@ import { navigation } from "../utils/data/navigation";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
-  const currentPath =
-    typeof window !== "undefined" ? window.location.pathname : "";
+  const [currentPath, setCurrentPath] = useState("");
+
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -16,6 +16,13 @@ const Header = () => {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll(); // initialize state if already scrolled
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setCurrentPath(window.location.pathname);
+    }
   }, []);
 
   return (

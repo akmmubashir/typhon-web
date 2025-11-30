@@ -1,4 +1,5 @@
 import React from "react";
+import { Heading, Paragraph, SubHeading } from "@/app/components/common";
 
 type Props = {
   locations: {
@@ -11,21 +12,40 @@ type Props = {
 
 const LocationMaps = (props: Props) => {
   return (
-    <div>
-      <div className="grid grid-cols-12 p-[100px_120px] max-2xl:p-[100px] max-lg:p-[60px_80px] max-md:p-[50px_20px] gap-[60px] max-2xl:gap-20 max-lg:gap-[30px_0]">
-        <div className="col-span-4">
-          <div className="rounded-[20px] overflow-hidden">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31428.346851097423!2d76.33374475!3d10.054488749999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080c269c104ecd%3A0x845435f558157962!2sKalamassery%2C%20Kochi%2C%20Kerala!5e0!3m2!1sen!2sin!4v1764516134397!5m2!1sen!2sin"
-              width="600"
-              height="450"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+    <div className="grid grid-cols-12 p-[100px_120px] max-2xl:p-[100px] max-lg:p-[60px_80px] max-md:p-[50px_20px] gap-10 max-lg:gap-[30px] max-md:gap-[30px_0]">
+      <div className="col-span-full flex flex-col items-center justify-center">
+        <SubHeading
+          title="Our Top Locations"
+          className="text-[#2a2a2a]! text-center uppercase"
+        />
+        <Heading
+          title="Delivering Structural Excellence Across India"
+          className="text-[#fa4729]! text-center"
+        />
+        <Paragraph
+          title="Typhon proudly serves clients across Kerala, Tamil Nadu, and Karnataka, providing advanced roofing and steel structure solutions to industrial, commercial, and institutional projects. With a strong presence in multiple regions, we ensure quick response times, smooth coordination, and efficient project execution. Our widespread operational network allows us to deliver the same level of quality, precision, and service excellence—no matter where your project is located."
+          className="w-2/3 max-md:w-full text-center"
+        />
+      </div>
+      {props.locations.map((item) => (
+        <div
+          key={item.id}
+          className="col-span-4 max-2xl:col-span-6 max-md:col-span-full flex flex-col gap-2.5"
+        >
+          <div
+            className="rounded-[20px] max-lg:rounded-lg overflow-hidden"
+            dangerouslySetInnerHTML={{ __html: item.mapSrc }}
+          />
+          <div className="flex flex-col gap-1">
+            <h6 className="text-[22px] max-lg:text-[20px] max-md:text-[18px] font-semibold text-[#fa4729]">
+              {item.name}
+            </h6>
+            <p className="text-[#2a2a2a] text-[16px] max-md:text-[14px]">
+              {item.address}
+            </p>
           </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };
