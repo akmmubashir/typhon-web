@@ -11,7 +11,7 @@ const ContactSection = (props: Props) => {
     <div className="bg-[#f8f8f8] grid grid-cols-12 p-[100px_120px] max-2xl:p-[100px] max-lg:p-[60px_80px] max-md:p-[50px_20px] gap-[100px] max-2xl:gap-[60px] max-lg:gap-[30px_0] items-center">
       <div className="col-span-4 max-lg:col-span-full justify-center flex flex-col gap-6 max-lg:gap-[20px_0]">
         <Heading
-          title={props.title ?? "Contact Section"}
+          title={props.title ?? "Contact Details"}
           className="text-[#181d4e]"
         />
         <div className=" flex flex-col gap-3">
