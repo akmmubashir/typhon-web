@@ -7,7 +7,7 @@ export const servicesData = [
   },
   {
     id: 2,
-    title: "PEB (Pre-Engineered Buildings)",
+    title: "Pre-Engineered Buildings",
     description: "Fast, efficient, and durable steel buildings",
     img: "/assets/services/pre-engineered-buildings.webp",
   },

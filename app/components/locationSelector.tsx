@@ -94,19 +94,21 @@ const LocationSelector = ({ className }: { className?: string }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newLocation = e.target.value;
-    const locationName = locationsList.find(loc => loc.id.toString() === newLocation)?.name || "";
-    
+    const locationName =
+      locationsList.find((loc) => loc.id.toString() === newLocation)?.name ||
+      "";
+
     setSelected(newLocation);
     localStorage.setItem("selectedLocation", newLocation);
-    
+
     // Get current pathname and update it with new location
     const currentPath = window.location.pathname;
-    const pathSegments = currentPath.split('/').filter(Boolean);
-    
+    const pathSegments = currentPath.split("/").filter(Boolean);
+
     // Replace first segment with new location name (lowercase, spaces to hyphens)
     if (pathSegments.length > 0) {
-      pathSegments[0] = locationName.toLowerCase().replace(/\s+/g, '-');
-      const newPath = '/' + pathSegments.join('/');
+      pathSegments[0] = locationName.toLowerCase().replace(/\s+/g, "-");
+      const newPath = "/" + pathSegments.join("/");
       window.location.href = newPath;
     } else {
       window.location.reload();

@@ -5,6 +5,8 @@ import { socialData } from "../utils/data/social";
 import Form from "./form";
 type Props = {
   title?: string;
+  product?: string;
+  service?: string;
 };
 const ContactSection = (props: Props) => {
   return (
