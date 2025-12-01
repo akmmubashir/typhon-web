@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { CommonButton } from "./common";
+
 import { navigation } from "../utils/data/navigation";
+import { locationsList } from "../utils/data/locations";
 import LocationSelector from "./locationSelector";
 import { ToggleIcon } from "./icons";
 
@@ -11,6 +13,28 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [currentPath, setCurrentPath] = useState("");
   const [showNav, setShowNav] = useState(false);
+  const [locationName, setLocationName] = useState<string>("");
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("selectedLocation");
+      if (stored) {
+        const found = locationsList.find((loc) => loc.id.toString() === stored);
+        if (found) setTimeout(() => setLocationName(found.name), 0);
+      }
+      // Listen for location changes
+      const handler = () => {
+        const updated = localStorage.getItem("selectedLocation");
+        if (updated) {
+          const found = locationsList.find(
+            (loc) => loc.id.toString() === updated
+          );
+          if (found) setLocationName(found.name);
+        }
+      };
+      window.addEventListener("locationChanged", handler);
+      return () => window.removeEventListener("locationChanged", handler);
+    }
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -59,21 +83,23 @@ const Header = () => {
         />
       </Link>
       <div className="flex items-center gap-5 max-lg:hidden">
-        {navigation.map((link) => (
-          <Link
-            key={link.title}
-            href={link.url}
-            className={`uppercase font-medium text-[16px] ${
-              currentPath === link.url ? "text-[#fa4729]!" : ""
-            } ${
-              !scrolled
-                ? `text-white hover:text-[#fa4729]`
-                : `text-black hover:text-[#fa4729]`
-            }`}
-          >
-            {link.title}
-          </Link>
-        ))}
+        {navigation(locationName.toLowerCase().replace(/ /g, "-")).map(
+          (link) => (
+            <Link
+              key={link.title}
+              href={link.url}
+              className={`uppercase font-medium text-[16px] ${
+                currentPath === link.url ? "text-[#fa4729]!" : ""
+              } ${
+                !scrolled
+                  ? `text-white hover:text-[#fa4729]`
+                  : `text-black hover:text-[#fa4729]`
+              }`}
+            >
+              {link.title}
+            </Link>
+          )
+        )}
       </div>
       <div className="flex gap-3 items-center">
         <LocationSelector
@@ -116,7 +142,7 @@ const Header = () => {
                 className={`bg-[#13163D] text-white p-[10px_10px]`}
               />
               <div className="flex flex-col gap-3">
-                {navigation.map((link) => (
+                {navigation("loc").map((link) => (
                   <Link
                     key={link.title}
                     href={link.url}

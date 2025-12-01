@@ -1,10 +1,38 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Paragraph, SubHeading } from "./common";
 import { navigation } from "../utils/data/navigation";
+import { locationsList } from "../utils/data/locations";
 
 const Footer = () => {
+  // Dynamic location logic: get from localStorage or fallback to 'bangalore'
+  const [locationName, setLocationName] = React.useState<string>("");
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("selectedLocation");
+      if (stored) {
+        const found = locationsList.find((loc) => loc.id.toString() === stored);
+        if (found) {
+          setLocationName(found.name);
+        }
+      }
+      // Listen for location changes
+      const handler = () => {
+        const updated = localStorage.getItem("selectedLocation");
+        if (updated) {
+          const found = locationsList.find(
+            (loc) => loc.id.toString() === updated
+          );
+          if (found) setLocationName(found.name);
+        }
+      };
+      window.addEventListener("locationChanged", handler);
+      return () => window.removeEventListener("locationChanged", handler);
+    }
+  }, []);
   return (
     <React.Fragment>
       <div className="bg-[#0b0d26] grid grid-cols-12 p-[80px_120px] max-2xl:p-[60px_100px] max-lg:p-[60px_80px] max-md:p-[50px_20px] gap-[60px_40px] max-lg:gap-[40px_0] items-start">
@@ -26,19 +54,21 @@ const Footer = () => {
         <div className="col-span-9 max-lg:col-span-full flex flex-wrap max-lg:flex-col justify-end gap-[60px] max-lg:gap-[20px_0]">
           <div className="">
             <SubHeading title="Quick Links" className="text-white uppercase" />
-            {navigation.map((link) => (
-              <Link
-                key={link.title}
-                href={link.url}
-                className="text-white text-[16px] max-lg:text-[14px] block mb-2"
-              >
-                {link.title}
-              </Link>
-            ))}
+            {navigation(locationName.toLowerCase().replace(/ /g, "-")).map(
+              (link) => (
+                <Link
+                  key={link.title}
+                  href={link.url}
+                  className="text-white text-[16px] max-lg:text-[14px] block mb-2"
+                >
+                  {link.title}
+                </Link>
+              )
+            )}
           </div>
           <div className="">
             <SubHeading title="Our Services" className="text-white uppercase" />
-            {navigation.map((link) => (
+            {navigation().map((link) => (
               <Link
                 key={link.title}
                 href={link.url}
@@ -50,7 +80,7 @@ const Footer = () => {
           </div>
           <div className="">
             <SubHeading title="Our Prodects" className="text-white uppercase" />
-            {navigation.map((link) => (
+            {navigation().map((link) => (
               <Link
                 key={link.title}
                 href={link.url}
@@ -65,7 +95,7 @@ const Footer = () => {
               title="Social Profiles"
               className="text-white uppercase"
             />
-            {navigation.map((link) => (
+            {navigation().map((link) => (
               <Link
                 key={link.title}
                 href={link.url}

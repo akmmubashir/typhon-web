@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { locationsList } from "@/app/utils/data/locations";
 import { SubHeading } from "@/app/components/common";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,12 +32,43 @@ const HomeProductsList = ({
     );
   };
 
+  // Dynamic location logic: get from localStorage or fallback to 'bangalore'
+  const [location, setLocation] = useState<string>("bangalore");
+  useEffect(() => {
+    function updateLocationFromStorage() {
+      const stored = localStorage.getItem("selectedLocation");
+      if (stored) {
+        const found = locationsList.find((loc) => loc.id.toString() === stored);
+        if (found) {
+          setLocation(found.name);
+        }
+      }
+    }
+    updateLocationFromStorage();
+    // Listen for storage event (cross-tab)
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === "selectedLocation") {
+        updateLocationFromStorage();
+      }
+    };
+    // Listen for custom event (same tab)
+    const onCustom = () => updateLocationFromStorage();
+    window.addEventListener("storage", onStorage);
+    window.addEventListener("locationChanged", onCustom);
+    return () => {
+      window.removeEventListener("storage", onStorage);
+      window.removeEventListener("locationChanged", onCustom);
+    };
+  }, []);
+
   return (
     <div className="col-span-full lg:mt-10 max-lg:order-3">
       <div className="grid grid-cols-12 gap-[30px]">
         {visible.map((product) => (
           <Link
-            href={`/india/products/${product.title
+            href={`/${location
+              .toLowerCase()
+              .replace(/ /g, "-")}/products/${product.title
               .toLowerCase()
               .replace(/ /g, "-")}`}
             key={product.id}

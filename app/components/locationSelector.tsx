@@ -12,7 +12,12 @@ const LocationSelector = ({ className }: { className?: string }) => {
     }
 
     function setNearestLocation(lat: number, lon: number) {
-      function haversine(lat1: number, lon1: number, lat2: number, lon2: number) {
+      function haversine(
+        lat1: number,
+        lon1: number,
+        lat2: number,
+        lon2: number
+      ) {
         const toRad = (x: number) => (x * Math.PI) / 180;
         const R = 6371; // km
         const dLat = toRad(lat2 - lat1);
@@ -21,14 +26,18 @@ const LocationSelector = ({ className }: { className?: string }) => {
           Math.sin(dLat / 2) * Math.sin(dLat / 2) +
           Math.cos(toRad(lat1)) *
             Math.cos(toRad(lat2)) *
-            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            Math.sin(dLon / 2) *
+            Math.sin(dLon / 2);
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return R * c;
       }
       let minDist = Infinity;
       let nearest = locationsList[0];
       for (const loc of locationsList) {
-        if (typeof loc.latitude === 'number' && typeof loc.longitude === 'number') {
+        if (
+          typeof loc.latitude === "number" &&
+          typeof loc.longitude === "number"
+        ) {
           const dist = haversine(lat, lon, loc.latitude, loc.longitude);
           if (dist < minDist) {
             minDist = dist;
@@ -38,6 +47,7 @@ const LocationSelector = ({ className }: { className?: string }) => {
       }
       setSelected(nearest.id.toString());
       localStorage.setItem("selectedLocation", nearest.id.toString());
+      window.dispatchEvent(new Event("locationChanged"));
     }
 
     // Try browser geolocation first
@@ -57,7 +67,10 @@ const LocationSelector = ({ className }: { className?: string }) => {
       fetch("https://ipapi.co/json/")
         .then((res) => res.json())
         .then((data) => {
-          if (typeof data.latitude === 'number' && typeof data.longitude === 'number') {
+          if (
+            typeof data.latitude === "number" &&
+            typeof data.longitude === "number"
+          ) {
             setNearestLocation(data.latitude, data.longitude);
           } else if (data.latitude && data.longitude) {
             setNearestLocation(Number(data.latitude), Number(data.longitude));
@@ -71,6 +84,7 @@ const LocationSelector = ({ className }: { className?: string }) => {
             if (found) {
               setSelected(found.id.toString());
               localStorage.setItem("selectedLocation", found.id.toString());
+              window.dispatchEvent(new Event("locationChanged"));
             }
           }
         })
@@ -79,8 +93,24 @@ const LocationSelector = ({ className }: { className?: string }) => {
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelected(e.target.value);
-    localStorage.setItem("selectedLocation", e.target.value);
+    const newLocation = e.target.value;
+    const locationName = locationsList.find(loc => loc.id.toString() === newLocation)?.name || "";
+    
+    setSelected(newLocation);
+    localStorage.setItem("selectedLocation", newLocation);
+    
+    // Get current pathname and update it with new location
+    const currentPath = window.location.pathname;
+    const pathSegments = currentPath.split('/').filter(Boolean);
+    
+    // Replace first segment with new location name (lowercase, spaces to hyphens)
+    if (pathSegments.length > 0) {
+      pathSegments[0] = locationName.toLowerCase().replace(/\s+/g, '-');
+      const newPath = '/' + pathSegments.join('/');
+      window.location.href = newPath;
+    } else {
+      window.location.reload();
+    }
   };
 
   return (

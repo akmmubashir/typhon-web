@@ -3,6 +3,7 @@ import { Paragraph, SubHeading } from "@/app/components/common";
 import { ArrowLeft, ArrowRight } from "@/app/components/icons";
 import Image from "next/image";
 import React, { useState, useEffect, useCallback, useRef } from "react";
+import { locationsList } from "@/app/utils/data/locations";
 import Link from "next/link";
 
 type Service = {
@@ -25,7 +26,35 @@ const HomeServiceSlider = ({
   const [slidesToShow, setSlidesToShow] = useState(3);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
-
+  // Dynamic location logic: get from localStorage or fallback to 'bangalore'
+  const [location, setLocation] = useState<string>("bangalore");
+  // Listen for location changes (localStorage or custom event)
+  useEffect(() => {
+    function updateLocationFromStorage() {
+      const stored = localStorage.getItem("selectedLocation");
+      if (stored) {
+        const found = locationsList.find((loc) => loc.id.toString() === stored);
+        if (found) {
+          setLocation(found.name);
+        }
+      }
+    }
+    updateLocationFromStorage();
+    // Listen for storage event (cross-tab)
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === "selectedLocation") {
+        updateLocationFromStorage();
+      }
+    };
+    // Listen for custom event (same tab)
+    const onCustom = () => updateLocationFromStorage();
+    window.addEventListener("storage", onStorage);
+    window.addEventListener("locationChanged", onCustom);
+    return () => {
+      window.removeEventListener("storage", onStorage);
+      window.removeEventListener("locationChanged", onCustom);
+    };
+  }, []);
   // Responsive slides to show
   useEffect(() => {
     const handleResize = () => {
@@ -148,7 +177,10 @@ const HomeServiceSlider = ({
                   className="object-cover  w-full h-[200px] max-xl:h-[180px] group-hover:scale-105 transition-transform duration-300 max-sm:h-[180px]"
                 />
                 <Link
-                  href={`/india/services/${service.title
+                  key={location}
+                  href={`/${location
+                    .toLowerCase()
+                    .replace(/\s+/g, "-")}/services/${service.title
                     .toLowerCase()
                     .replace(/\s+/g, "-")}`}
                   className="p-5 max-2xl:p-[15px] max-md:p-4 h-full"

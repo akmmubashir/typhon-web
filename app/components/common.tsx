@@ -5,7 +5,7 @@ export const Heading = ({
   title,
   className,
 }: {
-  title: string;
+  title: string | React.ReactNode;
   className?: string;
 }) => {
   return (
