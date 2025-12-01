@@ -52,9 +52,9 @@ const ProductsList = (props: Props) => {
                 .toLowerCase()
                 .replace(/ /g, "-")}`}
               key={product.id}
-              className="relative col-span-3 max-2xl:col-span-4 max-lg:col-span-6 max-md:col-span-full flex flex-col items-center text-center overflow-hidden shadow-lg rounded-xl bg-white group"
+              className="bg-transparent col-span-3 max-2xl:col-span-4 max-lg:col-span-6 max-md:col-span-full flex flex-col items-center text-center overflow-hidden shadow-lg rounded-xl group"
             >
-              <div className="w-full h-[200px] overflow-hidden rounded-lg">
+              <div className="w-full h-[200px] overflow-hidden relative bg-transparent">
                 <Image
                   src={product.img}
                   alt={product.title}
@@ -62,11 +62,16 @@ const ProductsList = (props: Props) => {
                   height={250}
                   className="object-cover object-top w-full h-full transition-transform duration-300 group-hover:scale-105"
                 />
+                <SubHeading
+                  title={product.title}
+                  className="bg-white absolute -bottom-4 mb-0! p-2.5 left-0 rounded-[0_20px_0_0] uppercase border-[0_0_0_1.5px] border-white group-hover:border-[#fa4729] transition-border duration-300"
+                />
               </div>
-              <SubHeading
-                title={product.title}
-                className="bg-white absolute bottom-0 mb-0! p-2.5 left-0 rounded-[0_20px_0_0] uppercase"
-              />
+              <div className="flex flex-col justify-start items-start w-full rounded-b-xl border-[0_1.5px_1.5px] border-white group-hover:border-[#fa4729] transition-border duration-300">
+                <p className="text-start text-[16px] max-lg:text-[14px] line-clamp-2 p-2.5">
+                  {product.description}
+                </p>
+              </div>
             </Link>
           ))}
         </div>
