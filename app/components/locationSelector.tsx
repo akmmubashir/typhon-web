@@ -7,33 +7,71 @@ const LocationSelector = ({ className }: { className?: string }) => {
   useEffect(() => {
     const stored = localStorage.getItem("selectedLocation");
     if (stored) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setSelected(stored);
+      setTimeout(() => setSelected(stored), 0);
       return;
     }
+
+    function setNearestLocation(lat: number, lon: number) {
+      function haversine(lat1: number, lon1: number, lat2: number, lon2: number) {
+        const toRad = (x: number) => (x * Math.PI) / 180;
+        const R = 6371; // km
+        const dLat = toRad(lat2 - lat1);
+        const dLon = toRad(lon2 - lon1);
+        const a =
+          Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+          Math.cos(toRad(lat1)) *
+            Math.cos(toRad(lat2)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return R * c;
+      }
+      let minDist = Infinity;
+      let nearest = locationsList[0];
+      for (const loc of locationsList) {
+        if (typeof loc.latitude === 'number' && typeof loc.longitude === 'number') {
+          const dist = haversine(lat, lon, loc.latitude, loc.longitude);
+          if (dist < minDist) {
+            minDist = dist;
+            nearest = loc;
+          }
+        }
+      }
+      setSelected(nearest.id.toString());
+      localStorage.setItem("selectedLocation", nearest.id.toString());
+    }
+
     // Try browser geolocation first
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        () => {}, // skip browser geolocation for now
+        (pos) => {
+          setNearestLocation(pos.coords.latitude, pos.coords.longitude);
+        },
         () => fetchByIP(),
         { timeout: 5000 }
       );
     } else {
       fetchByIP();
     }
+
     function fetchByIP() {
       fetch("https://ipapi.co/json/")
         .then((res) => res.json())
         .then((data) => {
-          // Try to match by state, then district
-          const found = locationsList.find(
-            (loc) =>
-              loc.state.toLowerCase() === (data.region || "").toLowerCase() ||
-              loc.district.toLowerCase() === (data.city || "").toLowerCase()
-          );
-          if (found) {
-            setSelected(found.id.toString());
-            localStorage.setItem("selectedLocation", found.id.toString());
+          if (typeof data.latitude === 'number' && typeof data.longitude === 'number') {
+            setNearestLocation(data.latitude, data.longitude);
+          } else if (data.latitude && data.longitude) {
+            setNearestLocation(Number(data.latitude), Number(data.longitude));
+          } else {
+            // fallback: try to match by state, then district
+            const found = locationsList.find(
+              (loc) =>
+                loc.state.toLowerCase() === (data.region || "").toLowerCase() ||
+                loc.district.toLowerCase() === (data.city || "").toLowerCase()
+            );
+            if (found) {
+              setSelected(found.id.toString());
+              localStorage.setItem("selectedLocation", found.id.toString());
+            }
           }
         })
         .catch(() => {});
