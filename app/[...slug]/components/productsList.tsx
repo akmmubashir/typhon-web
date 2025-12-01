@@ -25,7 +25,7 @@ const ProductsList = (props: Props) => {
                         className="text-[#2a2a2a] text-center w-3/4 max-md:w-full mb-10 max-lg:mb-6"
                     />
                 </div>
-                <div className="grid grid-cols-12 gap-[30px]">
+                <div className="grid grid-cols-12 gap-10 max-xl:gap-[30px]">
                     {productsData.map((product) => (
                         <Link
                             href={`/${props.location
@@ -34,7 +34,7 @@ const ProductsList = (props: Props) => {
                                     .toLowerCase()
                                     .replace(/ /g, "-")}`}
                             key={product.id}
-                            className="relative col-span-3 max-lg:col-span-6 max-md:col-span-full flex flex-col items-center text-center overflow-hidden shadow-lg rounded-xl bg-white group"
+                            className="relative col-span-3 max-2xl:col-span-4 max-lg:col-span-6 max-md:col-span-full flex flex-col items-center text-center overflow-hidden shadow-lg rounded-xl bg-white group"
                         >
                             <div className="w-full h-[200px] overflow-hidden rounded-lg">
                                 <Image
