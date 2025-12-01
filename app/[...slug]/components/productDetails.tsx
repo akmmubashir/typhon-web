@@ -1,6 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import { Heading, Paragraph, SubHeading } from "@/app/components/common";
+import {
+  Heading,
+  Paragraph,
+  replaceVariableName,
+  SubHeading,
+} from "@/app/components/common";
 import Banner from "@/app/components/banner";
 import Faq from "@/app/components/faq";
 import Testimonials from "@/app/components/testimonials";
@@ -50,8 +55,34 @@ const ProductDetails = (props: Props) => {
       <div className="bg-white grid grid-cols-12 items-center gap-[60px] max-2xl:gap-10 max-lg:gap-[20px_0] p-[80px_120px] max-2xl:p-[80px_100px] max-lg:p-[60px_80px] max-md:p-[40px_20px]">
         <div className="col-span-7 max-2xl:col-span-6 max-lg:col-span-full flex flex-col gap-6">
           <div>
-            <Heading title={<>{props.details.sub_title}</>} />
-            <Paragraph title={props.details.more_info} />
+            <Heading
+              title={
+                <>
+                  {replaceVariableName(
+                    props.details.sub_title,
+                    ["{location}"],
+                    [
+                      props.location.charAt(0).toUpperCase() +
+                        props.location.slice(1),
+                    ]
+                  )}
+                </>
+              }
+            />
+            <Paragraph
+              title={
+                <>
+                  {replaceVariableName(
+                    props.details.more_info,
+                    ["{location}"],
+                    [
+                      props.location.charAt(0).toUpperCase() +
+                        props.location.slice(1),
+                    ]
+                  )}
+                </>
+              }
+            />
           </div>
           <div>
             <SubHeading title={"Features"} className="text-[#fa4729]" />
@@ -62,7 +93,16 @@ const ProductDetails = (props: Props) => {
                     |
                   </span>
 
-                  <p className="text-[16px] max-lg:text-[14px]">{feature}</p>
+                  <p className="text-[16px] max-lg:text-[14px]">
+                    {replaceVariableName(
+                      feature,
+                      ["{location}"],
+                      [
+                        props.location.charAt(0).toUpperCase() +
+                          props.location.slice(1),
+                      ]
+                    )}
+                  </p>
                 </div>
               ))}
             </div>

@@ -1,5 +1,10 @@
 import Banner from "@/app/components/banner";
-import { Heading, Paragraph, SubHeading } from "@/app/components/common";
+import {
+  Heading,
+  Paragraph,
+  replaceVariableName,
+  SubHeading,
+} from "@/app/components/common";
 import ContactSection from "@/app/components/contactSection";
 import Faq from "@/app/components/faq";
 import Testimonials from "@/app/components/testimonials";
@@ -11,8 +16,21 @@ type Props = {
   details: {
     id: number;
     title: string;
-    description: string;
     img: string;
+    sub_title: string;
+    description: string;
+    more_info: string;
+    features: string[];
+    meta: {
+      title: string;
+      description: string;
+      keywords: string;
+    };
+    og: {
+      title: string;
+      description: string;
+      image: string;
+    };
   };
   location: string;
   type: string;
@@ -37,11 +55,57 @@ const ServiceDetails = (props: Props) => {
       <div className="bg-white grid grid-cols-12 items-center gap-[60px] max-2xl:gap-10 max-lg:gap-[20px_0] p-[80px_120px] max-2xl:p-[80px_100px] max-lg:p-[60px_80px] max-md:p-[40px_20px]">
         <div className="col-span-7 max-2xl:col-span-6 max-lg:col-span-full flex flex-col gap-6">
           <div>
-            <Heading title={<>{props.details.title}</>} />
-            <Paragraph title={props.details.description} />
+            <Heading
+              title={
+                <>
+                  {replaceVariableName(
+                    props.details.sub_title,
+                    ["{location}"],
+                    [
+                      props.location.charAt(0).toUpperCase() +
+                        props.location.slice(1),
+                    ]
+                  )}
+                </>
+              }
+            />
+            <Paragraph
+              title={
+                <>
+                  {replaceVariableName(
+                    props.details.more_info,
+                    ["{location}"],
+                    [
+                      props.location.charAt(0).toUpperCase() +
+                        props.location.slice(1),
+                    ]
+                  )}
+                </>
+              }
+            />
           </div>
           <div>
             <SubHeading title={"Features"} className="text-[#fa4729]" />
+            <div>
+              {props.details.features.map((feature, index) => (
+                <div key={index} className="flex items-start gap-2 mb-3">
+                  <span className="font-medium text-[16px] max-lg:text-[14px] text-[#fa4729]">
+                    |
+                  </span>
+
+                  <p className="text-[16px] max-lg:text-[14px]">
+                    {replaceVariableName(
+                      feature,
+                      ["{location}"],
+                      [
+                        props.location.charAt(0).toUpperCase() +
+                          props.location.slice(1),
+                      ]
+                    )}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <div className="col-span-5 max-2xl:col-span-6 max-lg:col-span-full">

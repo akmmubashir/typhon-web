@@ -84,3 +84,29 @@ export const CommonButton = ({
     </button>
   );
 };
+export const transformToLink = (str: string) =>
+  String(str)
+    .toLowerCase()
+    .replace(/[\(\)\[\]]/g, "") // Remove parentheses and square brackets
+    .replace(/\s+/g, "-") // Replace spaces with hyphens
+    .replace(/[^\w\s-]/gi, "-"); // Replace other special characters with hyphens
+export const transformToString = (str: string) => {
+  return String(str)
+    .replace(/[^a-zA-Z0-9 ]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (char) => char?.toUpperCase());
+};
+export const replaceVariableName = (
+  template: string,
+  data: string[],
+  values: string[]
+) => {
+  if (!template || !data || !values) return template;
+
+  data.forEach((key, index) => {
+    template = template?.replace(new RegExp(key, "g"), values[index] || "");
+  });
+
+  return template;
+};
