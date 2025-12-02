@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   Heading,
@@ -8,9 +9,43 @@ import {
 } from "@/app/components/common";
 import HomeProductsList from "./homeProductsList";
 import { productsData } from "@/app/utils/data/products";
+import { locationsList } from "@/app/utils/data/locations";
 // import HomeProductSlider from "./homeProductSlider";
 
 const OurProducts = () => {
+  const [location, setLocation] = useState<string>("chennai");
+
+  useEffect(() => {
+    // Get initial location from localStorage
+    const storedLocationId = localStorage.getItem("selectedLocation");
+    if (storedLocationId) {
+      const locationObj = locationsList.find(
+        (loc) => loc.id.toString() === storedLocationId
+      );
+      if (locationObj) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setLocation(locationObj.name.toLowerCase().replace(/\s+/g, "-"));
+      }
+    }
+
+    // Listen for location changes
+    const handleLocationChange = () => {
+      const storedLocationId = localStorage.getItem("selectedLocation");
+      if (storedLocationId) {
+        const locationObj = locationsList.find(
+          (loc) => loc.id.toString() === storedLocationId
+        );
+        if (locationObj) {
+          setLocation(locationObj.name.toLowerCase().replace(/\s+/g, "-"));
+        }
+      }
+    };
+
+    window.addEventListener("locationChanged", handleLocationChange);
+    return () =>
+      window.removeEventListener("locationChanged", handleLocationChange);
+  }, []);
+
   return (
     <div className="grid grid-cols-12 p-[80px_120px] max-2xl:p-[60px_100px] max-lg:p-[60px_80px] max-md:p-[50px_20px] gap-[60px_40px] max-lg:gap-[40px_0] items-center">
       <div className="col-span-7 max-lg:col-span-full  max-lg:order-2">
@@ -32,7 +67,7 @@ const OurProducts = () => {
         <div className="">
           <LinkButton
             title="know more"
-            link="/products"
+            link={`/${location}/products`}
             className="uppercase"
           />
         </div>
