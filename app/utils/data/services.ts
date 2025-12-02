@@ -158,7 +158,7 @@ export const servicesData = [
 
   {
     id: 6,
-    title: "Commercial & Industrial Roofing",
+    title: "Commercial and Industrial Roofing",
     sub_title:
       "Durable Roofing Solutions for Industrial Projects in {location}",
     description:
