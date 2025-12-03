@@ -65,7 +65,7 @@ const Header = () => {
 
   return (
     <div
-      className={`w-full flex items-center justify-between sticky top-0 z-50 p-[20px_120px] max-2xl:p-[20px_100px] max-lg:p-[10px_80px] max-md:p-[10px_20px] transition-colors duration-300 ${
+      className={`w-full flex items-center justify-between sticky top-0 z-50 p-[10px_120px] max-2xl:p-[10px_100px] max-lg:p-[10px_80px] max-md:p-[10px_20px] transition-colors duration-300 ${
         scrolled ? "bg-white backdrop-blur shadow-md" : "bg-transparent"
       }`}
     >
@@ -74,10 +74,10 @@ const Header = () => {
           src={
             scrolled
               ? "/assets/common/logo.png"
-              : "/assets/common/logo-mixed.png"
+              : "/assets/common/logo-white.png"
           }
           alt="Logo"
-          className="w-full h-[70px] max-lg:h-[50px] object-contain"
+          className="w-full h-[100px] max-lg:h-[60px] object-contain"
           width={400}
           height={100}
         />

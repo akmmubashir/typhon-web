@@ -39,9 +39,9 @@ const Footer = () => {
         <div className="col-span-3 max-lg:col-span-full flex flex-col justify-start gap-2.5">
           <Link href="/" className="w-fit">
             <Image
-              src={"/assets/common/logo-mixed.png"}
+              src={"/assets/common/logo-white.png"}
               alt="Logo"
-              className="w-full h-[70px] max-lg:h-[50px] object-contain"
+              className="w-full h-[100px] max-lg:h-20 object-contain"
               width={400}
               height={100}
             />
